@@ -1,8 +1,8 @@
 language: php
 
 php:
-  - 5.6
-  - 7.0
+  - '5.6'
+  - '7.0'
   - nightly
   - hhvm
   - hhvm-nightly
@@ -12,12 +12,13 @@ matrix:
     - php: hhvm
     - php: hhvm-nightly
     - php: nightly
-  
-install:
-  - curl -s http://getcomposer.org/installer | php -d date.timezone="Europe/Berlin" -- --install-dir=./bin/
-  - ./bin/composer.phar install
 
-script: ./bin/composer.phar build
+install:
+  - composer install
+
+script:
+  - composer test
+  - composer psr2
 
 after_script: php vendor/bin/coveralls -v
 

@@ -55,7 +55,7 @@ class ConfigIniParserTest extends TestCase
 
     public function testReadWithRelativePaths()
     {
-        $parser = new ConfigIniParser();
+        $parser = new ConfigIniParser;
         $config = $parser->parse($this->fixtures_dir . self::FIXTURE_CONFIG_WITH_RELATIVE_PATHS);
 
         $expected_base_path = dirname(dirname(dirname(dirname(__DIR__))));
@@ -85,7 +85,7 @@ class ConfigIniParserTest extends TestCase
      */
     public function testNonReadableConfig()
     {
-        $parser = new ConfigIniParser();
+        $parser = new ConfigIniParser;
 
         $parser->parse($this->fixtures_dir . 'this_config_does_not_exist.ini');
     }   // @codeCoverageIgnore
@@ -95,7 +95,7 @@ class ConfigIniParserTest extends TestCase
      */
     public function testNonParseableConfig()
     {
-        $parser = new ConfigIniParser();
+        $parser = new ConfigIniParser;
 
         $parser->parse($this->fixtures_dir . self::FIXTURE_NON_PARSEABLE_CONFIG);
     }   // @codeCoverageIgnore
