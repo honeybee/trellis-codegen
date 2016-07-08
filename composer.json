@@ -1,0 +1,32 @@
+{
+    "name": "honeybee/trellis-codegen",
+    "type": "library",
+    "description": "Scaffolding for honeybee/trellis entities.",
+    "keywords": ["codegen", "scaffolding", "entity"],
+    "homepage": "https://github.com/honeybee/trellis-codegen",
+    "license": "MIT",
+    "prefer-stable": true,
+    "minimum-stability": "stable",
+    "require": {
+        "php": ">=5.6.1",
+        "honeybee/trellis": "dev-immutability",
+        "twig/twig": "~1.23"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~5.4",
+        "satooshi/php-coveralls": "master@dev",
+        "squizlabs/php_codesniffer": "~2.6",
+        "sami/sami": "~3.2"
+    },
+    "autoload": {
+        "psr-4": { "Trellis\\Codegen\\": "src/" }
+    },
+    "autoload-dev": {
+        "psr-4": { "Trellis\\Codegen\\Tests\\" : "tests/" }
+    },
+    "scripts": {
+        "test": "phpunit",
+        "psr2": "phpcs --extensions=php --standard=psr2 ./src/ ./tests",
+        "docs": "sami.php --ansi update config/sami.php"
+    }
+}

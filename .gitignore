@@ -1,0 +1,10 @@
+/vendor
+/build
+.buildpath
+.project
+.settings
+/tags
+/composer
+/composer.phar
+/bin/composer
+/bin/composer.phar
