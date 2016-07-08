@@ -24,7 +24,7 @@ class EntityTypeSchemaTest extends TestCase
 
         $this->assertEquals(1, $embed_defs->getSize());
     }
-
+/* @todo readd when reference-list has landed again in trellis
     public function testGetUsedReferenceDefinitions()
     {
         $schema_path = __DIR__ .
@@ -40,4 +40,5 @@ class EntityTypeSchemaTest extends TestCase
 
         $this->assertEquals(2, $embed_defs->getSize());
     }
+*/
 }

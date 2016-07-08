@@ -4,7 +4,7 @@
 use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Input\ArgvInput;
 use Symfony\Component\Console\Output\ConsoleOutput;
-use Trellis\CodeGen\Console\GenerateCodeCommand;
+use Trellis\Codegen\Console\GenerateCodeCommand;
 
 $base_dir = dirname(__DIR__);
 if (!is_dir($base_dir . DIRECTORY_SEPARATOR . 'vendor')) {

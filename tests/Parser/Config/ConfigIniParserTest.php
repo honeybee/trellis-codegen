@@ -41,7 +41,6 @@ class ConfigIniParserTest extends TestCase
                     'deploy_path' => '/tmp/erpen-derp/mapping.json'
                 ]
             ],
-            'options' => [],
             'entity_suffix' => null,
             'type_suffix' => null,
             'embed_entity_suffix' => null,
@@ -69,7 +68,6 @@ class ConfigIniParserTest extends TestCase
             'deploy_dir' => $expected_deploy_dir,
             'deploy_method' => 'copy',
             'plugin_settings' => [],
-            'options' => [],
             'entity_suffix' => null,
             'type_suffix' => null,
             'embed_entity_suffix' => null,

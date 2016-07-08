@@ -12,7 +12,7 @@ class OptionDefinitionListTest extends TestCase
     {
         $list = new OptionDefinitionList;
 
-        $list->push(
+        $list = $list->push(
             new OptionDefinition([
                 'name' => 'Parent Foobar',
                 'value' => new OptionDefinitionList(

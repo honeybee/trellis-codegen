@@ -71,7 +71,7 @@ class EntityTypeSchema
     public function getUsedEmbedDefinitions(EntityTypeDefinition $type_definition)
     {
         $embed_types_definitions_list = new EntityTypeDefinitionList();
-        $embed_type_attributes = $type_definition->getAttributes()->filterByType('embedded-entity-list');
+        $embed_type_attributes = $type_definition->getAttributes()->filterByType('entity-list');
 
         foreach ($embed_type_attributes as $embed_type_attribute) {
             $embed_typed_types_opt = $embed_type_attribute->getOptions()->filterByName('entity_types');
@@ -79,31 +79,31 @@ class EntityTypeSchema
 
             foreach ($embed_types as $embed_type) {
                 if (!$embed_types_definitions_list->hasItem($embed_type)) {
-                    $embed_types_definitions_list->addItem($embed_type);
+                    $embed_types_definitions_list = $embed_types_definitions_list->push($embed_type);
                 }
                 foreach ($this->getUsedEmbedDefinitions($embed_type) as $nested_embed_type) {
                     if (!$embed_types_definitions_list->hasItem($nested_embed_type)) {
-                        $embed_types_definitions_list->addItem($nested_embed_type);
+                        $embed_types_definitions_list = $embed_types_definitions_list->push($nested_embed_type);
                     }
                 }
             }
         }
 
         $used_reference_types = new EntityTypeDefinitionList();
-        $reference_attributes = $type_definition->getAttributes()->filterByType('entity-reference-list');
+        $reference_attributes = $type_definition->getAttributes()->filterByType('reference-list');
         foreach ($reference_attributes as $reference_attribute) {
             $references_option = $reference_attribute->getOptions()->filterByName('entity_types');
             $references = $this->getReferenceDefinitions($references_option->getValue()->toArray());
             foreach ($references as $reference) {
                 if (!$used_reference_types->hasItem($reference)) {
-                    $used_reference_types->addItem($reference);
+                    $used_reference_types = $used_reference_types->push($reference);
                 }
             }
         }
         foreach ($used_reference_types as $reference_type) {
             foreach ($this->getUsedEmbedDefinitions($reference_type) as $embed_type) {
                 if (!$embed_types_definitions_list->hasItem($embed_type)) {
-                    $embed_types_definitions_list->addItem($embed_type);
+                    $embed_types_definitions_list = $embed_types_definitions_list->push($embed_type);
                 }
             }
         }
@@ -136,7 +136,7 @@ class EntityTypeSchema
             $references = $this->getReferenceDefinitions($references_option->getValue()->toArray());
             foreach ($references as $reference) {
                 if (!$reference_definitions_list->hasItem($reference)) {
-                    $reference_definitions_list->addItem($reference);
+                    $reference_definitions_list = $reference_definitions_list->push($reference);
                 }
             }
         }
@@ -148,14 +148,14 @@ class EntityTypeSchema
             $embed_types = $this->getEmbedDefinitions($embed_typed_types_opt->getValue()->toArray());
             foreach ($embed_types as $embed_type) {
                 if (!$used_embed_types->hasItem($embed_type)) {
-                    $used_embed_types->addItem($embed_type);
+                    $used_embed_types = $used_embed_types->push($embed_type);
                 }
             }
         }
         foreach ($used_embed_types as $embed_type) {
             foreach ($this->getUsedReferenceDefinitions($embed_type) as $reference) {
                 if (!$reference_definitions_list->hasItem($reference)) {
-                    $reference_definitions_list->addItem($reference);
+                    $reference_definitions_list = $reference_definitions_list->push($reference);
                 }
             }
         }
